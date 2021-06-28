@@ -32,8 +32,10 @@ local function scopeline_handler()
 	end
 	
 	local localPlayer = csgo.interface_handler:get_entity_list():get_localplayer();
+	local hudCvar = ConVar:find_var("cl_drawhud");
 	
 	if not localPlayer:is_alive() then
+		hudCvar:set_int(1);
         return 
 	end
 	
@@ -41,7 +43,6 @@ local function scopeline_handler()
 		comboRemoveScope:set_int(2);
 	end
 	
-	local hudCvar = ConVar:find_var("cl_drawhud");
 	if not localPlayer:get_var_bool("CCSPlayer->m_bIsScoped") then
 		hudCvar:set_int(1);
 		return;
